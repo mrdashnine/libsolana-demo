@@ -1,0 +1,6 @@
+build
+out
+dist
+.idea
+.kotlin
+.gradle

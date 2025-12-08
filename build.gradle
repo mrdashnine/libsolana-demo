@@ -1,0 +1,65 @@
+buildscript {
+    ext.kotlin_version = "2.2.10"
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+    id "application"
+    id "com.gradleup.shadow" version "9.1.0"
+}
+
+version = "1.0"
+repositories {
+    mavenCentral()
+}
+
+
+project.ext {
+    airlift_version = "0.21"
+        bitcoinj_version = "0.15.10"
+        caffeine_version = "2.8.0"
+        clikt_version = "2.8.0"
+        exposed_version = "1.0.0-rc-1"
+        jackson_version = "2.19.1"
+        ktor_version = "3.2.3"
+        libsolana_version = "0.1"
+        logback_version = "1.5.19"
+        postgresql_version = "42.7.7"
+        shadowjar_version = "9.1.0"
+        slf4j_version = "2.0.13"
+}
+
+apply plugin: "idea"
+apply plugin: "kotlin"
+apply plugin: "java"
+
+application {
+    mainClass = "io.bitrivet.demo.MainKt"
+}
+
+sourceSets {
+    main {
+        java.srcDirs = ["src", "gen"]
+    }
+    test {
+        java.srcDirs = ["test"]
+    }
+}
+
+dependencies {
+    api fileTree(dir: "./lib", include: "*.jar")
+
+    implementation "com.github.ajalt:clikt:$clikt_version"
+    api "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
+    api "com.fasterxml.jackson.core:jackson-core:$jackson_version"
+    api "com.fasterxml.jackson.core:jackson-annotations:$jackson_version"
+    api "com.fasterxml.jackson.module:jackson-module-kotlin:$jackson_version"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jackson_version"
+}
