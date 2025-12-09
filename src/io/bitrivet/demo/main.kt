@@ -13,6 +13,7 @@ import io.bitrivet.blockchain.solana.core.Commitment
 import io.bitrivet.blockchain.solana.core.signer.KeyPairSigner
 import io.bitrivet.blockchain.solana.rpc.RPC
 import io.bitrivet.demo.command.Balance
+import io.bitrivet.demo.command.Transfer
 import java.nio.file.Path
 
 class CLI : CliktCommand() {
@@ -31,6 +32,7 @@ class CLI : CliktCommand() {
 
 fun main(args: Array<String>) = CLI().subcommands(
     Balance(),
+    Transfer(),
 ).main(args)
 
 private fun readConfig(path: Path): Config {
